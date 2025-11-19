@@ -1,0 +1,35 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio / VSCode
+.vs/
+*.user
+*.suo
+
+# Logs
+*.log
+
+# Configurações locais
+appsettings.Development.json
+
+# Arquivos de build do .NET
+project.lock.json
+project.fragment.lock.json
+
+# Backup / caches
+*.tmp
+*.bak
+*.cache
+*.mdb
+
+# Publicações
+*.publishsettings
+
+# Sistema operacional
+Thumbs.db
+.DS_Store
+
+# Pacotes NuGet restauráveis
+*.nupkg
+packages/
