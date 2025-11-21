@@ -15,36 +15,33 @@ Console.WriteLine("4 - Divisão");
 Console.WriteLine("5 - Potência");
 string escolha = Console.ReadLine()!;
 
+double LerNumero(string mensagem)
+{
+    Console.WriteLine(mensagem);
+    double valor;
+    while (!double.TryParse(Console.ReadLine(), out valor))
+    {
+        Console.WriteLine("Entrada inválida. Digite novamente:");
+    }
+    return valor;
+}
+
 if (escolha == "1" || escolha == "2" || escolha == "3" || escolha == "4")
 {
-    Console.WriteLine("Digite o primeiro número:");
-    while (!double.TryParse(Console.ReadLine(), out x))
-{
-    Console.WriteLine("Entrada invalida. Por favor, digite um numero valido para o primeiro numero:");
+    x = LerNumero("Digite o primeiro número:");
+    y = LerNumero("Digite o segundo número:");
 }
-
-    Console.WriteLine("Digite o segundo número:");
-    while (!double.TryParse(Console.ReadLine(), out y))
+else if (escolha == "5")
 {
-    Console.WriteLine("Entrada invalida. Por favor, digite um numero valido para o segundo numero:");
+    x = LerNumero("Digite a base:");
+    y = LerNumero("Digite o expoente:");
 }
-
-}
-else if  (escolha == "5")
-{
-    Console.WriteLine("Digite a base:");
-    while (!double.TryParse(Console.ReadLine(), out x))
+else
 {
     Console.WriteLine("Operação inválida. Por favor, escolha uma operação válida.");
     return;
 }
-    Console.WriteLine("Digite o expoente:");
-    while (!double.TryParse(Console.ReadLine(), out y))
-{
-    Console.WriteLine("Entrada invalida. Por favor, digite um numero valido para o expoente:");
-}
 
-}
 
 switch (escolha)
 {
