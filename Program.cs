@@ -2,11 +2,14 @@
 
 double x = 0;
 double y = 0;
+string escolha;
 
 Operacao calc = new Operacao();
 
 Console.WriteLine("Calculadora Simples\n");
-
+do
+{
+    
 Console.WriteLine("Digite a operação desejada:");
 Console.WriteLine("1 - Soma");
 Console.WriteLine("2 - Subtração");
@@ -14,7 +17,8 @@ Console.WriteLine("3 - Multiplicação");
 Console.WriteLine("4 - Divisão");
 Console.WriteLine("5 - Potência");
 Console.WriteLine("6 - Raiz Quadrada");
-string escolha = Console.ReadLine()!;
+Console.WriteLine("Digite 0 para sair.");
+escolha = Console.ReadLine()!;
 
 double LerNumero(string mensagem)
 {
@@ -49,7 +53,7 @@ else
 
 
 switch (escolha)
-{
+    {
     case "1":
         calc.Somar(x, y);
         break;
@@ -73,7 +77,12 @@ switch (escolha)
     case "6":
         calc.RaizQuadrada(x);
         break;
+    case "0":
+        Console.WriteLine("Encerrando a calculadora.");
+        Environment.Exit(0);
+        break;
     default:
         Console.WriteLine("Operação inválida. Por favor, escolha uma operação válida.");
         break;
-}
+    }
+} while (escolha != "0");
