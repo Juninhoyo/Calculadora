@@ -7,6 +7,27 @@ namespace Operadores.Models
 {
     public class Operacao
     {
+        public static double LerNumero(string mensagem)
+        {
+            Console.WriteLine(mensagem);
+            double valor;
+            while (!double.TryParse(Console.ReadLine(), out valor))
+            {
+                Console.WriteLine("Entrada inválida. Digite novamente:");
+            }
+                return valor;
+        }
+        public static (double x, double y) LerDoisNumeros()
+        {
+            double x = LerNumero("Digite o primeiro número: ");
+            double y = LerNumero("Digite o segundo número: ");
+            return (x, y);
+        }
+        public static void Pausar()
+        {
+            Console.WriteLine("Pressione ENTER para continuar...");
+            Console.ReadLine();
+        }
         public double Somar(double x, double y)
         {
             double resultado = x + y;
