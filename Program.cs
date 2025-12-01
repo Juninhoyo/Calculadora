@@ -4,8 +4,8 @@ Operacao calc = new Operacao();
 
 double x = 0;
 double y = 0;
-string escolha;
-bool ExibirMenu = true;
+string escolha, OperaçaoBasica;
+bool ExibirMenuPrincipal = true;
 
 List<string> Historico = new List<string>();
 
@@ -13,73 +13,97 @@ List<string> Historico = new List<string>();
 Console.WriteLine("Calculadora Simples\n");
 
 
-while (ExibirMenu)
+while (ExibirMenuPrincipal)
 {
 Console.Clear();
-Console.WriteLine( 
-@"Digite a operação desejada: 
-1 - Soma
-2 - Subtração
-3 - Multiplicação
-4 - Divisão
-5 - Potência
-6 - Raiz Quadrada
-7 - Ver Histórico
-Digite 0 para sair.");
+Console.WriteLine("selecione a opção desejada:");
+Console.WriteLine("1 - Operações Básicas (Soma, Subtração, Multiplicação, Divisão)");
+Console.WriteLine("2 - Potência");
+Console.WriteLine("3 - Raiz Quadrada");
+Console.WriteLine("4 - Conversão de Moedas");
+Console.WriteLine("5 - Histórico de Operações");
+Console.WriteLine("0 - Sair");
 escolha = Console.ReadLine()!;
 
 switch (escolha)
     {
-    case "1":
-        (x, y) = Operacao.LerDoisNumeros();
-        double res1 = calc.Somar(x, y);
-        Historico.Add($"{x} + {y} = {res1}");
-        Operacao.Pausar();
-        break;
+        case "1":
+        Console.Clear();
+        Console.WriteLine("Operações Básicas");
+        Console.WriteLine("1 - Soma");
+        Console.WriteLine("2 - Subtração");
+        Console.WriteLine("3 - Multiplicação");
+        Console.WriteLine("4 - Divisão");
+        Console.WriteLine("5 - Voltar ao menu principal");
+        OperaçaoBasica = Console.ReadLine()!;
 
-    case "2":
-        (x, y) = Operacao.LerDoisNumeros();
-        double res2 = calc.Subtrair(x, y);
-        Historico.Add($"{x} - {y} = {res2}");
-        Operacao.Pausar();
-        break;
+            switch (OperaçaoBasica)
+            {   
+                case "1":
+                    (x, y) = Operacao.LerDoisNumeros();
+                    calc.Somar(x, y);
+                    Historico.Add($"{x} + {y} = {x + y}");
+                    Operacao.Pausar();
+                    break;
 
-    case "3":
-        (x, y) = Operacao.LerDoisNumeros();
-        double res3 = calc.Multiplicacao(x, y);
-        Historico.Add($"{x} * {y} = {res3}");
-        Operacao.Pausar();
-        break;
+                case "2":
+                    (x, y) = Operacao.LerDoisNumeros();
+                    calc.Subtrair(x, y);
+                    Historico.Add($"{x} - {y} = {x - y}");
+                    Operacao.Pausar();
+                    break;
 
-    case "4":
-        if (y == 0)
-        {
-            Console.WriteLine("Erro: Divisão por zero não é permitida.");
-            break;
+                case "3":
+                    (x, y) = Operacao.LerDoisNumeros();
+                    calc.Multiplicacao(x, y);
+                    Historico.Add($"{x} X {y} = {x * y}");
+                    Operacao.Pausar();
+                    break;
+
+                case "4":
+                    if (y == 0)
+                        {
+                            Console.WriteLine("Erro: Divisão por zero não é permitida.");
+                            break;
+                        }
+                    (x, y) = Operacao.LerDoisNumeros();
+                    double res4 = calc.Divisao(x, y);
+                    Historico.Add($"{x} / {y} = {res4}");
+                    Operacao.Pausar();
+                    break;
+
+                case "5":
+                    break;
+                
+                default:
+                    Console.WriteLine("Opção inválida.");
+                    Operacao.Pausar();
+                    break;
         }
-        (x, y) = Operacao.LerDoisNumeros();
-        double res4 = calc.Divisao(x, y);
-        Historico.Add($"{x} / {y} = {res4}");
-        Operacao.Pausar();
         break;
 
-    case "5":
-        x = Operacao.LerNumero("Digite a base:");
-        y = Operacao.LerNumero("Digite o expoente:");
-        double res5 = calc.Potencia(x, y);
-        Historico.Add($"{x} ^ {y} = {res5}");
-        Operacao.Pausar();
-        break;
+        case "2":
+            x = Operacao.LerNumero("Digite a base: ");
+            y = Operacao.LerNumero("Digite o expoente: ");
+            calc.Potencia(x, y);
+            Historico.Add($"{x} elevado a {y} = {Math.Pow(x, y)}");
+            Operacao.Pausar();
+            break;
 
-    case "6":
-        x = Operacao.LerNumero("Digite o número para calcular a raiz quadrada:");
-        double res6 = calc.RaizQuadrada(x);
-        Historico.Add($"Raiz quadrada de {x} = {res6}");
-        Operacao.Pausar();
-        break;
+        case "3":
+            x = Operacao.LerNumero("Digite o número para calcular a raiz quadrada: ");
+            calc.RaizQuadrada(x);
+            Historico.Add($"A raiz quadrada de {x} é {Math.Sqrt(x)}");
+            Operacao.Pausar();
+            break;
 
-    case "7":
-        Console.WriteLine("Histórico");
+        case "4":
+            Console.WriteLine("Conversão de moedas ainda não implementada.");
+            Operacao.Pausar();
+            break;
+        
+        case "5":
+            Console.WriteLine("Histórico");
         if (Historico.Count == 0)
         {
             Console.WriteLine("Nenhuma operação realizada ainda.");
@@ -94,15 +118,16 @@ switch (escolha)
             }
         }
         break;
+        
+        case "0":
+            Console.WriteLine("Calculadora encerrada.");
+            ExibirMenuPrincipal = false;
+            break;
 
-    case "0":
-        Console.WriteLine("Encerrando a calculadora.");
-        Environment.Exit(0);
-        break;
-
-    default:
-        Console.WriteLine("Operação inválida. Por favor, escolha uma operação válida.");
-        break;
-
+        default:
+            Console.WriteLine("Opção inválida.");
+            Operacao.Pausar();
+            break;
+    
     }
 }
