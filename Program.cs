@@ -162,9 +162,6 @@ switch (escolha)
                     Console.WriteLine("Digite o número correspondente à moeda ou digite 0 para voltar ao menu principal:");
                     RealParaMoeda = Console.ReadLine()!;
 
-                    Console.WriteLine("Digite o valor da moeda escolhida: ");
-                    decimal valorMoeda = Convert.ToDecimal(Console.ReadLine());
-
                     switch (RealParaMoeda)
                     {
                         case "1":
