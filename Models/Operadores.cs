@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Operadores.Models
+namespace Calculadora.Models
 {
     public class Operacao
     {
@@ -68,6 +68,6 @@ namespace Operadores.Models
             double resultado = Math.Sqrt(x);
             Console.WriteLine($"A raiz quadrada de {x} é {resultado}");
             return resultado;
-        }
+        }      
     }
 }
