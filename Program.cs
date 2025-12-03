@@ -27,7 +27,7 @@ switch (escolha)
     {
         case "1":
         Console.Clear();
-        Console.WriteLine("Operações Básicas");
+        Console.WriteLine("Operações");
         Console.WriteLine("1 - Soma");
         Console.WriteLine("2 - Subtração");
         Console.WriteLine("3 - Multiplicação");
@@ -61,12 +61,13 @@ switch (escolha)
                     break;
 
                 case "4":
+                    (x, y) = Operacao.LerDoisNumeros();
                     if (y == 0)
                         {
-                            Console.WriteLine("Erro: Divisão por zero não é permitida.");
+                            Console.WriteLine("Erro: Divisão por zero não é permitida digite enter para continuar.");
+                            Operacao.Pausar();
                             break;
                         }
-                    (x, y) = Operacao.LerDoisNumeros();
                     double res4 = calc.Divisao(x, y);
                     Historico.Add($"{x} / {y} = {res4}");
                     Operacao.Pausar();
@@ -159,6 +160,7 @@ switch (escolha)
                     Console.WriteLine("1 - Dólar");
                     Console.WriteLine("2 - Euro");
                     Console.WriteLine("3 - Iene");
+                    Console.WriteLine("0 - Voltar");
                     Console.WriteLine("Digite o número correspondente à moeda ou digite 0 para voltar ao menu principal:");
                     RealParaMoeda = Console.ReadLine()!;
 
@@ -173,17 +175,17 @@ switch (escolha)
                         }
                         case "2":
                         {
-                                x = Operacao.LerNumero("Digite o valor em Euro: ");
-                                decimal convertido = ConverterMoedas.EuroParaReal((decimal)x);
-                                Historico.Add($"€ {x:F2} convertido para Real é R$ {convertido:F2}");
-                                break;
+                            x = Operacao.LerNumero("Digite o valor em Euro: ");
+                            decimal convertido = ConverterMoedas.EuroParaReal((decimal)x);
+                            Historico.Add($"€ {x:F2} convertido para Real é R$ {convertido:F2}");
+                            break;
                         }
                         case "3":
                         {
-                                x = Operacao.LerNumero("Digite o valor em Iene: ");
-                                decimal convertido = ConverterMoedas.IeneParaReal((decimal)x);
-                                Historico.Add($"¥ {x:F2} convertido para Real é R$ {convertido:F2}");
-                                break;
+                            x = Operacao.LerNumero("Digite o valor em Iene: ");
+                            decimal convertido = ConverterMoedas.IeneParaReal((decimal)x);
+                            Historico.Add($"¥ {x:F2} convertido para Real é R$ {convertido:F2}");
+                            break;
                         }
                         case "0":
                             break;
